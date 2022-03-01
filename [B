@@ -1,0 +1,36 @@
+warning: LF will be replaced by CRLF in tensor_flow/regressao_linear/linear_regression_tensorflow.ipynb.
+The file will have its original line endings in your working directory
+[1mdiff --git a/tensor_flow/regressao_linear/linear_regression_tensorflow.ipynb b/tensor_flow/regressao_linear/linear_regression_tensorflow.ipynb[m
+[1mindex 59129a4..1a2d986 100644[m
+[1m--- a/tensor_flow/regressao_linear/linear_regression_tensorflow.ipynb[m
+[1m+++ b/tensor_flow/regressao_linear/linear_regression_tensorflow.ipynb[m
+[36m@@ -470,7 +470,7 @@[m
+   },[m
+   {[m
+    "cell_type": "code",[m
+[31m-   "execution_count": null,[m
+[32m+[m[32m   "execution_count": 38,[m
+    "metadata": {},[m
+    "outputs": [],[m
+    "source": [[m
+[36m@@ -481,9 +481,18 @@[m
+   },[m
+   {[m
+    "cell_type": "code",[m
+[31m-   "execution_count": null,[m
+[32m+[m[32m   "execution_count": 39,[m
+    "metadata": {},[m
+[31m-   "outputs": [],[m
+[32m+[m[32m   "outputs": [[m
+[32m+[m[32m    {[m
+[32m+[m[32m     "name": "stdout",[m
+[32m+[m[32m     "output_type": "stream",[m
+[32m+[m[32m     "text": [[m
+[32m+[m[32m      "66.90666666666675\n",[m
+[32m+[m[32m      "5890.493333333337\n"[m
+[32m+[m[32m     ][m
+[32m+[m[32m    }[m
+[32m+[m[32m   ],[m
+    "source": [[m
+     "print(mae)\n",[m
+     "print(mse)"[m
