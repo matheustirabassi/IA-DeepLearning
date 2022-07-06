@@ -5,9 +5,6 @@ import os
 
 os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
 
-import plaidml.keras
-from plaidml.keras import backend as K
-
 import matplotlib.pyplot as plt
 import numpy as np
 from imutils import paths
@@ -38,13 +35,18 @@ print("[INFO] loading images...")
 imagePaths = list(paths.list_images(args["dataset"]))
 
 # initialize the image preprocessors
-sp = SimplePreprocessor(32, 32)
+
+width = 64
+height = 64
+depth = 3
+
+sp = SimplePreprocessor(width, height)
 iap = ImageToArrayPreprocessor()
 
 # load the dataset from disk then scale the raw pixel intensities
 # to the range [0, 1]
 sdl = SimpleDatasetLoader(preprocessors=[sp, iap])
-(data, labels) = sdl.load(imagePaths, verbose=500)
+(data, labels) = sdl.load(imagePaths, verbose=60)
 data = data.astype("float") / 255.0
 
 # partition the data into training and testing splits using 75% of
@@ -57,9 +59,6 @@ lb = LabelBinarizer()
 trainY = lb.fit_transform(trainY)
 testY = lb.fit_transform(testY)
 
-width = 32
-height = 32
-depth = 3
 input_shape = (width, height, 3)
 
 if K.image_data_format() == "channels_first":
@@ -67,16 +66,12 @@ if K.image_data_format() == "channels_first":
 model = Sequential (
     [
         Input(shape = input_shape),
-        Conv2D(32, (3, 3), input_shape=input_shape, activation="relu"),
-        MaxPooling2D((2, 2)),
-        Conv2D(64, (3, 3), input_shape=input_shape, activation="relu"),
-        MaxPooling2D((2, 2)),
+        Conv2D(64, (3, 3), activation="relu"),
+
         Flatten(),
-        Dense(128, activation="relu"),
-        Dropout(0.5),
-        Dense(64, activation="relu"),
-        Dropout(0.5),
+
         Dense(32, activation="relu"),
+
         Dense(3),
         Activation("softmax")
     ]
